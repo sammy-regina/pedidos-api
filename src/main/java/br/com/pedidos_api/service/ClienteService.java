@@ -4,8 +4,8 @@ import br.com.pedidos_api.entity.ClienteEntity;
 import br.com.pedidos_api.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ClienteService {
@@ -37,4 +37,12 @@ public class ClienteService {
         // O método findAll() busca tudo o que está na tabela do banco H2
         return clienteRepository.findAll();
     }
+
+    public ClienteEntity buscarPorId(Long id) {
+        // Busca no repositório. Se a caixa estiver cheia, extrai o Cliente.
+        // Se estiver vazia, lança uma exceção "NoSuchElementException"
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Cliente com ID " + id + " não foi encontrado."));
+    }
+
 }

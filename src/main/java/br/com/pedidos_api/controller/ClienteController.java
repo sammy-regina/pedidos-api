@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +48,17 @@ public class ClienteController {
 
         // 3. Retorna o status 200 OK junto com a lista (que virá vazia [] se não houver clientes)
         return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) {
+        // Chama o serviço para buscar a entidade (que já valida se existe ou não)
+        ClienteEntity entidade = clienteService.buscarPorId(id);
+
+        // Converte a entidade encontrada para o DTO de saída seguro
+        ClienteResponseDTO dto = ClienteMapper.toDTO(entidade);
+
+        // Devolve os dados com o status 200 OK
+        return ResponseEntity.ok(dto);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -21,5 +22,16 @@ public class GlobalExceptionHandler {
         body.put("message", ex.getMessage()); // Carrega a mensagem: "CPF já cadastrado..."
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Map<String, Object>> handleNotFound(NoSuchElementException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND.value()); // 404
+        body.put("error", "Recurso Não Encontrado");
+        body.put("message", ex.getMessage()); // Carrega: "Cliente com ID XPTO não foi encontrado"
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 }
