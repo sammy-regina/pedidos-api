@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,4 +62,20 @@ public class ClienteController {
         // Devolve os dados com o status 200 OK
         return ResponseEntity.ok(dto);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto) {
+        // Converte o DTO recebido para a entidade de dados
+        ClienteEntity dadosNovos = ClienteMapper.toEntity(dto);
+
+        // Passa o ID e os novos dados para o Service processar
+        ClienteEntity entidadeAtualizada = clienteService.atualizar(id, dadosNovos);
+
+        // Transforma a entidade atualizada de volta para o DTO de saída seguro
+        ClienteResponseDTO resposta = ClienteMapper.toDTO(entidadeAtualizada);
+
+        // Retorna o status 200 OK com os dados novos no corpo
+        return ResponseEntity.ok(resposta);
+    }
+
 }

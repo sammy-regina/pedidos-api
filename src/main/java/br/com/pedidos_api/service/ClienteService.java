@@ -45,4 +45,19 @@ public class ClienteService {
                 .orElseThrow(() -> new NoSuchElementException("Cliente com ID " + id + " não foi encontrado."));
     }
 
+    @Transactional
+    public ClienteEntity atualizar(Long id, ClienteEntity dadosAtualizados) {
+        // Busca o cliente atual no banco. Se não existir, o buscarPorId já lança a exceção do 404!
+        ClienteEntity clienteExistente = buscarPorId(id);
+
+        // Atualiza os campos do cliente que está no banco com os novos dados
+        clienteExistente.setNome(dadosAtualizados.getNome());
+        clienteExistente.setEmail(dadosAtualizados.getEmail());
+        clienteExistente.setTelefone(dadosAtualizados.getTelefone());
+        clienteExistente.setCpf(dadosAtualizados.getCpf());
+
+        // Salva a entidade modificada de volta no H2
+        return clienteRepository.save(clienteExistente);
+    }
+
 }
