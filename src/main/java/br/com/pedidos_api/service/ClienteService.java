@@ -5,6 +5,8 @@ import br.com.pedidos_api.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClienteService {
 
@@ -29,5 +31,10 @@ public class ClienteService {
         }
 
         return clienteRepository.save(cliente);
+    }
+
+    public List<ClienteEntity> listarTodos() {
+        // O método findAll() busca tudo o que está na tabela do banco H2
+        return clienteRepository.findAll();
     }
 }
