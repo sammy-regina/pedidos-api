@@ -60,4 +60,13 @@ public class ClienteService {
         return clienteRepository.save(clienteExistente);
     }
 
+    @Transactional
+    public void deletar(Long id) {
+        // Tenta buscar o cliente. Se não existir, o buscarPorId já lança o 404!
+        ClienteEntity cliente = buscarPorId(id);
+
+        // Se achou, deleta o registro usando o método embutido do JPA
+        clienteRepository.delete(cliente);
+    }
+
 }

@@ -7,6 +7,7 @@ import br.com.pedidos_api.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,6 +77,15 @@ public class ClienteController {
 
         // Retorna o status 200 OK com os dados novos no corpo
         return ResponseEntity.ok(resposta);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        // Executa a deleção no Service
+        clienteService.deletar(id);
+
+        // Retorna o status 204 No Content sem corpo de resposta (.build())
+        return ResponseEntity.noContent().build();
     }
 
 }
