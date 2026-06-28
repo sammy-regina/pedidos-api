@@ -8,8 +8,8 @@ import jakarta.validation.constraints.Size;
 // Records são uma forma concisa de criar classes imutáveis em Java. Eles são ideais para representar dados simples, como DTOs (Data Transfer Objects), onde o foco está em armazenar e transferir dados sem a necessidade de lógica adicional.
 public record ClienteRequestDTO(
 
-        @NotBlank(message = "O nome do cliente é obrigatório e não pode ser vazio")
-        @Size(max = 50, message = "O nome não pode ter mais que 50 caracteres")
+        @NotBlank(message = "O nome do cliente é obrigatório.")
+        @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres.")
         String nome,
 
         @NotBlank(message = "O email do cliente é obrigatório")
