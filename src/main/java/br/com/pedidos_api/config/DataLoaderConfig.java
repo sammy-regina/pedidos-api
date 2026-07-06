@@ -35,7 +35,7 @@ public class DataLoaderConfig {
             ClienteEntity cliente3 = ClienteEntity.builder()
                     .nome("Pedro")
                     .email("pedro@email.com")
-                    .telefone("11999999992")
+                    .telefone("119999999920")
                     .cpf("12345678902")
                     .build();
 
