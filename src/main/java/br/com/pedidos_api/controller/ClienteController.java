@@ -42,13 +42,13 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<List<ClienteResponseDTO>> listar() {
-        // 1. Busca a lista de entidades do banco através do Service
+        // Busca a lista de entidades do banco através do Service
         List<ClienteEntity> entidades = clienteService.listarTodos();
 
-        // 2. Usa o Mapper para converter a lista de entidades em uma lista de DTOs seguros
+        // Usa o Mapper para converter a lista de entidades em uma lista de DTOs seguros
         List<ClienteResponseDTO> dtos = ClienteMapper.toDTOList(entidades);
 
-        // 3. Retorna o status 200 OK junto com a lista (que virá vazia [] se não houver clientes)
+        // Retorna o status 200 OK junto com a lista (que virá vazia [] se não houver clientes)
         return ResponseEntity.ok(dtos);
     }
 
