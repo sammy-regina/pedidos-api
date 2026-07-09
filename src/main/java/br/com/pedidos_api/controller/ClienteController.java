@@ -31,22 +31,22 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<ClienteResponseDTO> criar(@Valid @RequestBody ClienteRequestDTO dto) {
-        ClienteEntity novaEntidade = ClienteMapper.toEntity(dto);
+        ClienteEntity novoCliente = ClienteMapper.toEntity(dto);
 
-        ClienteEntity entidadeSalva = clienteService.salvar(novaEntidade);
+        ClienteEntity clienteSalvo = clienteService.salvar(novoCliente);
 
-        ClienteResponseDTO resposta = ClienteMapper.toDTO(entidadeSalva);
+        ClienteResponseDTO cliente = ClienteMapper.toDTO(clienteSalvo);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
     @GetMapping
     public ResponseEntity<List<ClienteResponseDTO>> listar() {
         // Busca a lista de entidades do banco através do Service
-        List<ClienteEntity> entidades = clienteService.listarTodos();
+        List<ClienteEntity> clientes = clienteService.listarTodos();
 
         // Usa o Mapper para converter a lista de entidades em uma lista de DTOs seguros
-        List<ClienteResponseDTO> dtos = ClienteMapper.toDTOList(entidades);
+        List<ClienteResponseDTO> dtos = ClienteMapper.toDTOList(clientes);
 
         // Retorna o status 200 OK junto com a lista (que virá vazia [] se não houver clientes)
         return ResponseEntity.ok(dtos);
@@ -55,10 +55,10 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) {
         // Chama o serviço para buscar a entidade (que já valida se existe ou não)
-        ClienteEntity entidade = clienteService.buscarPorId(id);
+        ClienteEntity cliente = clienteService.buscarPorId(id);
 
         // Converte a entidade encontrada para o DTO de saída seguro
-        ClienteResponseDTO dto = ClienteMapper.toDTO(entidade);
+        ClienteResponseDTO dto = ClienteMapper.toDTO(cliente);
 
         // Devolve os dados com o status 200 OK
         return ResponseEntity.ok(dto);

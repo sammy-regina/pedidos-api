@@ -6,10 +6,13 @@ import br.com.pedidos_api.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
@@ -23,10 +26,17 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<ProdutoResponseDTO> criar(@Valid @RequestBody ProdutoRequestDTO dto){
-        ProdutoResponseDTO resposta = produtoService.criar(dto);
+        ProdutoResponseDTO produtos = produtoService.criar(dto);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtos);
 
     }
 
+    @GetMapping
+    public ResponseEntity<List<ProdutoResponseDTO>> listarTodos(){
+
+        List<ProdutoResponseDTO> produtos = produtoService.ListarTodos();
+
+        return ResponseEntity.ok(produtos);
+    }
 }
