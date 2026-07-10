@@ -1,5 +1,6 @@
 package br.com.pedidos_api.service;
 
+import java.util.NoSuchElementException;
 import br.com.pedidos_api.dto.ProdutoRequestDTO;
 import br.com.pedidos_api.dto.ProdutoResponseDTO;
 import br.com.pedidos_api.entity.ProdutoEntity;
@@ -30,5 +31,12 @@ public class ProdutoService {
     public List<ProdutoResponseDTO> ListarTodos() {
         List<ProdutoEntity> produtos = produtoRepository.findAll();
         return ProdutoMapper.toDTOList(produtos);
+    }
+
+    @Transactional(readOnly = true)
+    public ProdutoResponseDTO buscarPorId(Long id) {
+        ProdutoEntity produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com o ID: " + id));
+        return ProdutoMapper.toDTO(produto);
     }
 }
