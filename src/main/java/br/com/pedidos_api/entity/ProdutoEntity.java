@@ -38,5 +38,12 @@ public class ProdutoEntity {
 
     @Column(name = "ativo", nullable = false)
     private Boolean ativo = true;
+
+    public void atualizarDados(String nome, String descricao, java.math.BigDecimal preco, Boolean ativo) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.ativo = ativo;
+    }
 }
 

@@ -39,4 +39,21 @@ public class ProdutoService {
                 .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com o ID: " + id));
         return ProdutoMapper.toDTO(produto);
     }
+    @Transactional
+    public ProdutoResponseDTO atualizar(Long id, ProdutoRequestDTO dto) {
+        ProdutoEntity produtoExistente = produtoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com o ID: " + id));
+
+        produtoExistente.atualizarDados(
+                dto.nome(),
+                dto.descricao(),
+                dto.preco(),
+                dto.ativo()
+        );
+
+        ProdutoEntity produtoAtualizado = produtoRepository.save(produtoExistente);
+
+        return ProdutoMapper.toDTO(produtoAtualizado);
+    }
+
 }
