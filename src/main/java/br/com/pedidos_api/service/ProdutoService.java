@@ -56,4 +56,22 @@ public class ProdutoService {
         return ProdutoMapper.toDTO(produtoAtualizado);
     }
 
+    @Transactional
+    public void inativar(Long id) {
+        ProdutoEntity produtoExistente = produtoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com o ID: " + id));
+
+        // Altera a flag 'ativo' para false dentro da própria entidade
+        produtoExistente.inativar();
+        produtoRepository.save(produtoExistente);
+    }
+
+    @Transactional
+    public void deletarFisico(Long id) {
+        ProdutoEntity produtoExistente = produtoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com o ID: " + id));
+
+        produtoRepository.delete(produtoExistente);
+    }
+
 }

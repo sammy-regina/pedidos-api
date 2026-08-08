@@ -6,6 +6,7 @@ import br.com.pedidos_api.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,6 +56,18 @@ public class ProdutoController {
 
         ProdutoResponseDTO produtoAtualizado = produtoService.atualizar(id, dto);
         return ResponseEntity.ok(produtoAtualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> inativar(@PathVariable Long id) {
+        produtoService.inativar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}/fisico")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        produtoService.deletarFisico(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

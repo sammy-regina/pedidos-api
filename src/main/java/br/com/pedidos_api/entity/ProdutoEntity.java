@@ -45,5 +45,9 @@ public class ProdutoEntity {
         this.preco = preco;
         this.ativo = ativo;
     }
+
+    public void inativar() {
+        this.ativo = false;
+    }
 }
 
