@@ -51,10 +51,12 @@ public class ClienteService {
         ClienteEntity clienteExistente = buscarPorId(id);
 
         // Atualiza os campos do cliente que está no banco com os novos dados
-        clienteExistente.setNome(dadosAtualizados.getNome());
-        clienteExistente.setEmail(dadosAtualizados.getEmail());
-        clienteExistente.setTelefone(dadosAtualizados.getTelefone());
-        clienteExistente.setCpf(dadosAtualizados.getCpf());
+        clienteExistente.atualizarDados(
+                dadosAtualizados.getNome(),
+                dadosAtualizados.getEmail(),
+                dadosAtualizados.getTelefone(),
+                dadosAtualizados.getCpf()
+        );
 
         // Salva a entidade modificada de volta no H2
         return clienteRepository.save(clienteExistente);
