@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="br.com.pedidos_api.PedidosApiApplicationTests" time="9.937" tests="1" errors="0" skipped="0" failures="0" flakes="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="br.com.pedidos_api.repository.ClienteRepositoryTest" time="1.576" tests="2" errors="0" skipped="0" failures="0" flakes="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -65,11 +65,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="contextLoads" classname="br.com.pedidos_api.PedidosApiApplicationTests" time="1.446">
-    <system-out><![CDATA[21:24:35.179 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.pedidos_api.PedidosApiApplicationTests]: PedidosApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:24:35.319 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.pedidos_api.PedidosApiApplication for test class br.com.pedidos_api.PedidosApiApplicationTests
-21:24:35.437 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.pedidos_api.PedidosApiApplicationTests]: PedidosApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:24:35.439 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.pedidos_api.PedidosApiApplication for test class br.com.pedidos_api.PedidosApiApplicationTests
+  <testcase name="naoDevePermitirCpfDuplicado" classname="br.com.pedidos_api.repository.ClienteRepositoryTest" time="0.356">
+    <system-out><![CDATA[2026-07-06T21:24:44.703-03:00  INFO 11964 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [br.com.pedidos_api.repository.ClienteRepositoryTest]: ClienteRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-07-06T21:24:44.857-03:00  INFO 11964 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration br.com.pedidos_api.PedidosApiApplication for test class br.com.pedidos_api.repository.ClienteRepositoryTest
+2026-07-06T21:24:44.860-03:00  INFO 11964 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [br.com.pedidos_api.repository.ClienteRepositoryTest]: ClienteRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-07-06T21:24:44.891-03:00  INFO 11964 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration br.com.pedidos_api.PedidosApiApplication for test class br.com.pedidos_api.repository.ClienteRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -80,52 +80,45 @@
 
  :: Spring Boot ::                (v4.0.6)
 
-2026-07-06T21:24:36.027-03:00  INFO 11964 --- [           main] b.c.p.PedidosApiApplicationTests         : Starting PedidosApiApplicationTests using Java 21.0.9 with PID 11964 (started by sammy in C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api)
-2026-07-06T21:24:36.030-03:00  INFO 11964 --- [           main] b.c.p.PedidosApiApplicationTests         : No active profile set, falling back to 1 default profile: "default"
-2026-07-06T21:24:37.202-03:00  INFO 11964 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-06T21:24:37.296-03:00  INFO 11964 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 2 JPA repository interfaces.
-2026-07-06T21:24:37.974-03:00  INFO 11964 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-07-06T21:24:38.197-03:00  INFO 11964 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
-2026-07-06T21:24:38.976-03:00  INFO 11964 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-06T21:24:39.059-03:00  INFO 11964 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-07-06T21:24:39.322-03:00  INFO 11964 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:pedidosdb user=SA
-2026-07-06T21:24:39.324-03:00  INFO 11964 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-07-06T21:24:39.361-03:00  WARN 11964 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-07-06T21:24:39.395-03:00  INFO 11964 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [jdbc:h2:mem:pedidosdb]
+2026-07-06T21:24:44.949-03:00  INFO 11964 --- [           main] b.c.p.repository.ClienteRepositoryTest   : Starting ClienteRepositoryTest using Java 21.0.9 with PID 11964 (started by sammy in C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api)
+2026-07-06T21:24:44.949-03:00  INFO 11964 --- [           main] b.c.p.repository.ClienteRepositoryTest   : No active profile set, falling back to 1 default profile: "default"
+2026-07-06T21:24:45.171-03:00  INFO 11964 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06T21:24:45.189-03:00  INFO 11964 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 2 JPA repository interfaces.
+2026-07-06T21:24:45.211-03:00  INFO 11964 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-07-06T21:24:45.268-03:00  INFO 11964 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:f0bd3ba4-69a4-440c-a664-3b4da6b708f0;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-07-06T21:24:45.318-03:00  INFO 11964 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-07-06T21:24:45.491-03:00  INFO 11964 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06T21:24:45.494-03:00  WARN 11964 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-06T21:24:45.495-03:00  INFO 11964 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:f0bd3ba4-69a4-440c-a664-3b4da6b708f0]
 	Database driver: H2 JDBC Driver
 	Database dialect: H2Dialect
 	Database version: 2.4.240
-	Default catalog/schema: PEDIDOSDB/PUBLIC
+	Default catalog/schema: F0BD3BA4-69A4-440C-A664-3B4DA6B708F0/PUBLIC
 	Autocommit mode: undefined/unknown
 	Isolation level: READ_COMMITTED [default READ_COMMITTED]
 	JDBC fetch size: 100
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-07-06T21:24:40.792-03:00  INFO 11964 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06T21:24:45.612-03:00  INFO 11964 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: create table tb_cliente (id bigint generated by default as identity, cpf varchar(11) not null, email varchar(100) not null, nome varchar(50) not null, telefone varchar(20), primary key (id))
 Hibernate: create table tb_produto (id bigint generated by default as identity, ativo boolean not null, descricao varchar(255), nome varchar(100) not null, preco numeric(38,2) not null, primary key (id))
 Hibernate: alter table if exists tb_cliente drop constraint if exists UKjgra977gi05fur83l225x4qkr
 Hibernate: alter table if exists tb_cliente add constraint UKjgra977gi05fur83l225x4qkr unique (cpf)
 Hibernate: alter table if exists tb_cliente drop constraint if exists UKir2m70agseiyyajtaxq7wsw20
 Hibernate: alter table if exists tb_cliente add constraint UKir2m70agseiyyajtaxq7wsw20 unique (email)
-2026-07-06T21:24:40.876-03:00  INFO 11964 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06T21:24:41.036-03:00  INFO 11964 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-07-06T21:24:41.509-03:00  WARN 11964 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-06T21:24:42.382-03:00  INFO 11964 --- [           main] o.s.b.h.a.H2ConsoleAutoConfiguration     : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:pedidosdb'
-2026-07-06T21:24:42.546-03:00  INFO 11964 --- [           main] b.c.p.PedidosApiApplicationTests         : Started PedidosApiApplicationTests in 6.971 seconds (process running for 8.946)
-Hibernate: select ce1_0.id,ce1_0.cpf,ce1_0.email,ce1_0.nome,ce1_0.telefone from tb_cliente ce1_0
+2026-07-06T21:24:45.643-03:00  INFO 11964 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06T21:24:45.763-03:00  INFO 11964 --- [           main] b.c.p.repository.ClienteRepositoryTest   : Started ClienteRepositoryTest in 0.862 seconds (process running for 12.163)
 Hibernate: insert into tb_cliente (cpf,email,nome,telefone,id) values (?,?,?,?,default)
 Hibernate: insert into tb_cliente (cpf,email,nome,telefone,id) values (?,?,?,?,default)
-Hibernate: insert into tb_cliente (cpf,email,nome,telefone,id) values (?,?,?,?,default)
-Dados de teste carregados com sucesso no H2!
+2026-07-06T21:24:46.061-03:00  WARN 11964 --- [           main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 23505, SQLState: 23505
+2026-07-06T21:24:46.061-03:00  WARN 11964 --- [           main] org.hibernate.orm.jdbc.error             : Unique index or primary key violation: "PUBLIC.UKJGRA977GI05FUR83L225X4QKR INDEX PUBLIC.UKJGRA977GI05FUR83L225X4QKR_INDEX_4 ON PUBLIC.TB_CLIENTE(CPF NULLS FIRST) VALUES ( /* 1 */ '11122233344' )"; SQL statement:
+insert into tb_cliente (cpf,email,nome,telefone,id) values (?,?,?,?,default) [23505-240]
 ]]></system-out>
-    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
-WARNING: A Java agent has been loaded dynamically (C:\Users\sammy\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
-WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
-WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
-WARNING: Dynamic loading of agents will be disallowed by default in a future release
-]]></system-err>
+  </testcase>
+  <testcase name="deveSalvarClienteComSucesso" classname="br.com.pedidos_api.repository.ClienteRepositoryTest" time="0.099">
+    <system-out><![CDATA[Hibernate: insert into tb_cliente (cpf,email,nome,telefone,id) values (?,?,?,?,default)
+]]></system-out>
   </testcase>
 </testsuite>

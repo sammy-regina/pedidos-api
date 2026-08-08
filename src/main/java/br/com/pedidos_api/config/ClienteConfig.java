@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DataLoaderConfig {
+public class ClienteConfig {
 
     // O CommandLineRunner é um método que o Spring executa AUTOMATICAMENTE
     // logo após a aplicação subir com sucesso.
@@ -35,7 +35,7 @@ public class DataLoaderConfig {
             ClienteEntity cliente3 = ClienteEntity.builder()
                     .nome("Pedro")
                     .email("pedro@email.com")
-                    .telefone("11999999992")
+                    .telefone("119999999920")
                     .cpf("12345678902")
                     .build();
 

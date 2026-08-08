@@ -30,62 +30,51 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteResponseDTO> criar(@Valid @RequestBody ClienteRequestDTO dto) {
-        ClienteEntity novaEntidade = ClienteMapper.toEntity(dto);
+    public ResponseEntity<ClienteResponseDTO> criar(@Valid @RequestBody ClienteRequestDTO dto) { // recebe um DTO de requisição de cliente, valida os dados e cria um novo cliente no banco de dados
+        ClienteEntity novoCliente = ClienteMapper.toEntity(dto); // converte o DTO de requisição para uma entidade de cliente e salva na variável novoCliente
 
-        ClienteEntity entidadeSalva = clienteService.salvar(novaEntidade);
+        ClienteEntity clienteSalvo = clienteService.salvar(novoCliente); // chama o método salvar do service para persistir o novo cliente no banco de dados e retorna a entidade salva correspondente, que é salva na variável clienteSalvo
 
-        ClienteResponseDTO resposta = ClienteMapper.toDTO(entidadeSalva);
+        ClienteResponseDTO cliente = ClienteMapper.toDTO(clienteSalvo); // converte a entidade salva para um DTO de resposta seguro e salva na variável cliente
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cliente); // retorna uma resposta HTTP com status 201 Created e o DTO do cliente criado no corpo da resposta
     }
 
     @GetMapping
-    public ResponseEntity<List<ClienteResponseDTO>> listar() {
-        // 1. Busca a lista de entidades do banco através do Service
-        List<ClienteEntity> entidades = clienteService.listarTodos();
+    public ResponseEntity<List<ClienteResponseDTO>> listar() { // busca todos os clientes no banco de dados e retorna uma lista de DTOs de resposta
+        List<ClienteEntity> clientes = clienteService.listarTodos(); // busca todos os clientes no banco de dados através do Service e retorna uma lista de entidades correspondentes e salva na variável clientes
 
-        // 2. Usa o Mapper para converter a lista de entidades em uma lista de DTOs seguros
-        List<ClienteResponseDTO> dtos = ClienteMapper.toDTOList(entidades);
+        List<ClienteResponseDTO> dtos = ClienteMapper.toDTOList(clientes); // converte a lista de entidades para uma lista de DTOs de saída seguros e salva na variável dtos
 
-        // 3. Retorna o status 200 OK junto com a lista (que virá vazia [] se não houver clientes)
-        return ResponseEntity.ok(dtos);
+        return ResponseEntity.ok(dtos); // retorna o status 200 OK junto com a lista de DTOs dos clientes encontrados
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) {
-        // Chama o serviço para buscar a entidade (que já valida se existe ou não)
-        ClienteEntity entidade = clienteService.buscarPorId(id);
+    public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) { // busca um cliente específico pelo ID no banco de dados
 
-        // Converte a entidade encontrada para o DTO de saída seguro
-        ClienteResponseDTO dto = ClienteMapper.toDTO(entidade);
+        ClienteEntity cliente = clienteService.buscarPorId(id); // busca o cliente no banco de dados através do Service e retorna a entidade correspondente e salva na variável cliente
 
-        // Devolve os dados com o status 200 OK
-        return ResponseEntity.ok(dto);
+        ClienteResponseDTO dto = ClienteMapper.toDTO(cliente); // converte a entidade para o DTO de saída seguro e salva na variável dto
+
+        return ResponseEntity.ok(dto); // retorna o status 200 OK junto com o DTO do cliente encontrado
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ClienteResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto) {
-        // Converte o DTO recebido para a entidade de dados
-        ClienteEntity dadosNovos = ClienteMapper.toEntity(dto);
+    public ResponseEntity<ClienteResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto) { // atualiza os dados de um cliente específico no banco de dados com base no ID fornecido e nos novos dados fornecidos no DTO de requisição
+        ClienteEntity dadosNovos = ClienteMapper.toEntity(dto); // converte o DTO de requisição para uma entidade de cliente e salva na variável dadosNovos
 
-        // Passa o ID e os novos dados para o Service processar
-        ClienteEntity entidadeAtualizada = clienteService.atualizar(id, dadosNovos);
+        ClienteEntity entidadeAtualizada = clienteService.atualizar(id, dadosNovos); // chama o método atualizar do service para atualizar os dados do cliente no banco de dados com base no ID fornecido e nos novos dados fornecidos, e retorna a entidade atualizada correspondente, que é salva na variável entidadeAtualizada
 
-        // Transforma a entidade atualizada de volta para o DTO de saída seguro
-        ClienteResponseDTO resposta = ClienteMapper.toDTO(entidadeAtualizada);
+        ClienteResponseDTO resposta = ClienteMapper.toDTO(entidadeAtualizada); // converte a entidade atualizada para um DTO de resposta seguro e salva na variável resposta
 
-        // Retorna o status 200 OK com os dados novos no corpo
-        return ResponseEntity.ok(resposta);
+        return ResponseEntity.ok(resposta); // retorna o status 200 OK junto com o DTO do cliente atualizado
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        // Executa a deleção no Service
-        clienteService.deletar(id);
+    public ResponseEntity<Void> deletar(@PathVariable Long id) { // chama o método deletar do service para remover o cliente do banco de dados com base no ID fornecido
+        clienteService.deletar(id); // chama o método deletar do service para remover o cliente do banco de dados com base no ID fornecido
 
-        // Retorna o status 204 No Content sem corpo de resposta (.build())
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build(); // retorna uma resposta HTTP com status 204 No Content, indicando que a operação de exclusão foi bem-sucedida, mas não há conteúdo adicional a ser retornado na resposta
     }
 
 }

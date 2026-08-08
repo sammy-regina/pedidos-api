@@ -10,12 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_cliente")
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,4 +34,15 @@ public class ClienteEntity {
 
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     private String cpf;
+
+    public void atualizarDados(String nome, String email, String telefone, String cpf) {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome não pode ser vazio ao atualizar o cliente.");
+        }
+
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+    }
 }

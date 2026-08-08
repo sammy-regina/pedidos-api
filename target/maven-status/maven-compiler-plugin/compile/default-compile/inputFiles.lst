@@ -1,1 +1,16 @@
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\config\DataLoaderConfig.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\controller\ClienteController.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\dto\ClienteRequestDTO.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\dto\ClienteResponseDTO.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\dto\ProdutoRequestDTO.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\dto\ProdutoResponseDTO.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\entity\ClienteEntity.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\entity\ProdutoEntity.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\exception\GlobalExceptionHandler.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\mapper\ClienteMapper.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\mapper\ProdutoMapper.java
 C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\PedidosApiApplication.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\repository\ClienteRepository.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\repository\ProdutoRepository.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\service\ClienteService.java
+C:\Users\sammy\Desenvolvimento\mentoria\pedidos-api\src\main\java\br\com\pedidos_api\service\ProdutoService.java
